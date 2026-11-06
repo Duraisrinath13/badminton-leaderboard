@@ -85,7 +85,13 @@ tr.q.best td:first-child{box-shadow:inset 4px 0 0 #e0a800}
 .bm .s{display:flex;justify-content:space-between;gap:8px;padding:5px 8px;font-size:13px}
 .bm .s+.s{border-top:1px solid var(--line)}
 .bm .s.w{font-weight:700;background:var(--brand2)}
-.bm .s .sd{color:var(--mute);font-size:11px;margin-right:4px}
+.bm .s .sd{color:var(--brand);font-weight:700;font-size:12px}
+.bm .s .nm{white-space:normal;line-height:1.2}.bm .s{align-items:center}.bm .s .pt{flex:none}
+.round.right .bm .s{flex-direction:row-reverse}.round.right .bm .s .nm{text-align:right}
+.rb.center{justify-content:center}.bm.final{border:2px solid var(--gold)}
+.round.center{min-width:200px}
+.bracket .round{min-width:175px}
+.tvseg{margin:0;border-color:rgba(255,255,255,.35)}.tvseg button{background:transparent;color:#fff;padding:6px 10px}.tvseg button.on{background:#fff;color:var(--brand);font-weight:700}.tvseg button:disabled{opacity:.45}
 .bm.empty{cursor:default;opacity:.7}
 .champ{font-size:20px;font-weight:800;text-align:center;padding:14px;border-radius:12px;background:var(--goldbg);border:2px solid var(--gold);margin-bottom:14px}
 .help h3{margin-top:18px}.help li{margin:4px 0}
@@ -96,7 +102,7 @@ tr.q.best td:first-child{box-shadow:inset 4px 0 0 #e0a800}
 body.tv{background:#0c1622;color:#eef3f8;overflow:hidden;font-size:1.25vw}
 .tv-wrap{height:100vh;display:flex;flex-direction:column;padding:1.2vw 1.6vw;gap:1vw}
 .tv-head{display:flex;align-items:center;gap:1.5vw}
-.tv-head h1{margin:0;font-size:2.4vw;flex:1}
+.tv-head h1{margin:0;font-size:2.2vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv-head .sub{font-size:1.2vw;color:#9fb3c8}
 .tv-head .clock{font-size:2vw;font-variant-numeric:tabular-nums;color:#f5c542}
 .tv-body{flex:1;min-height:0;display:grid;gap:1vw;overflow:hidden}
@@ -111,15 +117,42 @@ body.tv{background:#0c1622;color:#eef3f8;overflow:hidden;font-size:1.25vw}
 .tv-foot{display:flex;gap:1vw;align-items:center;font-size:1vw;color:#9fb3c8;white-space:nowrap;overflow:hidden}
 .tv-foot .r{background:#13212f;padding:.3vw .7vw;border-radius:99px;color:#dfe8f0}
 .tv-foot .r b{color:#f5c542}
-.tv-bracket{display:flex;gap:1.2vw;height:100%;min-height:0;overflow:hidden}
+.tv-bracket{display:flex;gap:.6vw;height:100%;min-height:0;overflow:hidden}
 .tv-bracket .round{min-width:0;flex:1}.tv-bracket .rb{gap:min(.3vw,.5vh)}
 .tv-bracket .round h4{color:#7f93a8;font-size:.9vw}
 .tv-bracket .bm{background:#13212f;border-color:#22374b;cursor:default}
 .tv-bracket .bm .s{font-size:var(--bfs,1vw);line-height:1.3;padding:min(.15vw,.25vh) .5vw;color:#dfe8f0;white-space:nowrap;overflow:hidden}
 .tv-bracket .bm .s+.s{border-color:#22374b}
 .tv-bracket .bm .s.w{background:rgba(245,197,66,.2);color:#fff}
+.tv-bracket .bm .s .sd{color:#f5c542;font-size:inherit}.tv-bracket .bm .s .nm{white-space:normal;line-height:1.15}.tv-bracket .bm .s{align-items:center;gap:.4vw}.tv-bracket .bm.final{border-color:#f5c542}
+.tv-prov{color:#f5c542;font-size:1.3vw;text-align:center}
 .tv-champ{font-size:2.4vw;text-align:center;color:#f5c542;font-weight:800}
 .tv-empty{display:flex;align-items:center;justify-content:center;font-size:2vw;color:#7f93a8;height:100%}
+
+/* winners & qualified */
+.qmark{color:#b8860b;font-weight:800;font-size:.9em;white-space:nowrap}
+.bm .s.w{font-weight:800}
+.bm .s.w .nm{color:#b8860b}
+.bm .s.w .pt{color:#b8860b}
+.tv-table .qmark{color:#f5c542}
+.tv-bracket .bm .s.w .nm,.tv-bracket .bm .s.w .pt{color:#ffd23f;font-weight:800}
+.tv-champ{color:#ffd23f}
+.bm .s .sd{color:var(--mute)}.bm .s.w .sd{color:#b8860b}
+.tv-bracket .bm .s .sd{color:#8ea3b8}.tv-bracket .bm .s.w .sd{color:#ffd23f}
+/* qualified names in league tables */
+tr.q td.tn{color:#9a6b00;font-weight:800}
+.tv-table tr.q td.tn{color:#ffd23f;font-weight:800}
+
+/* tournament details */
+header.top h1 .hclub{display:block;font-size:12px;font-weight:600;opacity:.85;letter-spacing:.04em;text-transform:uppercase}
+header.top h1 .htype{font-size:12px;font-weight:600;background:rgba(255,255,255,.2);padding:2px 8px;border-radius:99px;vertical-align:middle}
+.details input[type=date]{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}
+.tv-title{flex:1;min-width:0}
+.tv-club{font-size:1.3vw;color:#f5c542;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.tv-type{font-size:1.1vw;font-weight:700;color:#0c1622;background:#f5c542;padding:.2vw .8vw;border-radius:99px;vertical-align:middle;margin-left:.6vw}
+.tv-info{font-size:1vw;color:#9fb3c8;margin-top:.2vw}
+.tv-right{text-align:right}
+.tv-right .sub{margin-top:.2vw}
 </style>
 </head>
 <body>
@@ -437,6 +470,42 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     }
   };
 
+  /* ---------- clinched qualification ----------
+     A team is "clinched" when it qualifies whatever the remaining league results are.
+     Pessimistic test: the team loses all its remaining matches; any rival that could reach
+     the same or more points (ties counted against the team) is treated as finishing above it. */
+  E.clinched = function (state, q) {
+    const out = new Set();
+    const pending = state.matches.filter(m => !m.result);
+    const tables = E.standings(state);
+    if (!pending.length) { const r = E.qualify(state, q); if (!r.error) r.list.forEach(x => out.add(x.id)); return out; }
+    const rem = {}; state.teams.forEach(t => (rem[t.id] = 0));
+    pending.forEach(m => { rem[m.t1]++; rem[m.t2]++; });
+    const wp = state.settings.winPts;
+    const all = tables.flatMap(t => t.rows);
+    if (all.length < q.size) return out;
+    const worst = r => r.Pts, best = r => r.Pts + wp * rem[r.id];
+    if (q.mode === 'overall') {
+      all.forEach(x => { const threats = all.filter(y => y !== x && best(y) >= worst(x)).length; if (threats < q.size) out.add(x.id); });
+      return out;
+    }
+    const N = Math.max(0, q.perTable | 0), T = tables.length;
+    if (N * T > q.size) return out;
+    const direct = tables.reduce((a, t) => a + Math.min(N, t.rows.length), 0);
+    const need = q.size - direct; // places for best (N+1)-th placed teams
+    // highest points the (N+1)-th placed team of each table could end with
+    const capNext = tables.map(t => { const b = t.rows.map(best).sort((a, c) => c - a); return b.length > N ? b[N] : -Infinity; });
+    tables.forEach((t, ti) => t.rows.forEach(x => {
+      const worstPos = 1 + t.rows.filter(y => y !== x && best(y) >= worst(x)).length;
+      if (worstPos <= N) { out.add(x.id); return; }
+      if (worstPos === N + 1 && need > 0) {
+        const threats = capNext.filter((c, tj) => tj !== ti && c >= worst(x)).length;
+        if (threats < need) out.add(x.id);
+      }
+    }));
+    return out;
+  };
+
   /* ---------- knockout draw ---------- */
   E.bracketOrder = function (n) { let o = [1]; while (o.length < n) { const m = o.length * 2; o = o.flatMap(s => [s, m + 1 - s]); } return o; };
 
@@ -463,8 +532,10 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     } else {
       pairs = seeds.slice(0, K / 2).map(h => [h, bySeed[K + 1 - h.seed]]);
     }
-    // same-table avoidance by swapping bottom teams
-    for (let pass = 0; pass < 3; pass++) {
+    const orig = pairs.map(p => p[1]);
+    const origClashes = pairs.filter(p => p[0].tableId === p[1].tableId).map(p => ({ a: p[0].seed, b: p[1].seed, tableId: p[0].tableId }));
+    // same-table avoidance by swapping bottom teams (unless strict seeding chosen)
+    if (q.avoidSame !== false) for (let pass = 0; pass < 3; pass++) {
       pairs.forEach((p, i) => {
         if (p[0].tableId !== p[1].tableId) return;
         let best = -1, bestDist = 1e9;
@@ -477,12 +548,15 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
         if (best >= 0) { const t = p[1]; p[1] = pairs[best][1]; pairs[best][1] = t; }
       });
     }
-    pairs.forEach(p => { if (p[0].tableId === p[1].tableId) warnings.push(`Seed ${p[0].seed} and seed ${p[1].seed} are from the same table – no valid swap found.`); });
+    const swaps = [];
+    pairs.forEach((p, i) => { if (p[1] !== orig[i]) swaps.push({ top: p[0].seed, from: orig[i].seed, to: p[1].seed, id: p[1].id }); });
+    const clashes = pairs.filter(p => p[0].tableId === p[1].tableId).map(p => ({ a: p[0].seed, b: p[1].seed, tableId: p[0].tableId }));
+    if (q.avoidSame !== false) clashes.forEach(c => warnings.push(`Seed ${c.a} and seed ${c.b} are from the same table – no valid swap found.`));
     const byTop = {}; pairs.forEach(p => (byTop[p[0].seed] = p));
     const first = topOrder.map((s, i) => { const p = byTop[s]; return { id: 'K0-' + i, t1: p[0].id, t2: p[1].id, seed1: p[0].seed, seed2: p[1].seed, result: null }; });
     const rounds = [first];
     for (let n = K / 4; n >= 1; n /= 2) rounds.push(Array.from({ length: n }, (_, i) => ({ id: 'K' + rounds.length + '-' + i, t1: null, t2: null, result: null })));
-    return { rounds, third: null, warnings };
+    return { rounds, third: null, warnings, swaps, clashes, origClashes };
   };
 
   // Recompute who is in each later-round match; clears results whose teams changed.
@@ -549,8 +623,8 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
 
   /* ---------- state & storage ---------- */
   function blank() {
-    return { v: 1, name: 'Badminton Tournament', settings: E.defaultSettings(), teams: [], matches: [], detection: null, tableMode: 'combined', manual: {}, manualX: {},
-      qual: { size: 16, mode: 'group', perTable: 2, seeding: 'seed' }, ko: null, tvMode: 'auto', updatedAt: 0 };
+    return { v: 1, name: 'Badminton Tournament', club: '', type: '', venue: '', date: '', detailsSaved: false, demo: false, settings: E.defaultSettings(), teams: [], matches: [], detection: null, tableMode: 'combined', manual: {}, manualX: {},
+      qual: { size: 16, mode: 'group', perTable: 2, seeding: 'seed' }, ko: null, tvView: 'league', updatedAt: 0 };
   }
   function load() {
     try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.v === 1) { const b = blank(); return Object.assign(b, s, { settings: Object.assign(b.settings, s.settings) }); } } catch (e) { /* ignore */ }
@@ -566,62 +640,115 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   const team = id => (S.teams.find(t => t.id === id) || { name: '—' });
   const tname = id => (id ? team(id).name : 'TBD');
 
+  /* ---------- shared helpers ---------- */
+  const TYPES = ["Men's Singles", "Women's Singles", "Men's Doubles", "Women's Doubles", 'Mixed Doubles', 'Singles', 'Doubles', 'Team event'];
+  function fmtDate(d) { if (!d) return ''; const x = new Date(d + 'T00:00:00'); return isNaN(x) ? d : x.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' }); }
+  function infoLine() { return [S.type, S.venue, fmtDate(S.date)].filter(Boolean).join(' · '); }
+  function tableNames() { const o = {}; E.tables(S).forEach(t => (o[t.id] = t.name)); return o; }
+  function safeQual() { try { return S.detection ? E.qualify(S, S.qual) : null; } catch (e) { return null; } }
+  function qualifiedData() {
+    if (S.ko && S.ko.seeds) return { list: S.ko.seeds, provisional: false };
+    const q = safeQual(); if (!q || q.error) return null;
+    const pending = S.matches.filter(m => !m.result).length;
+    return { list: q.list, provisional: pending > 0, pending };
+  }
+  // Teams confirmed through: the knockout's locked list, or the current list once every league match is played
+  // Teams sure to qualify: the knockout's locked list, or teams that can no longer be caught (updates after every score)
+  function confirmedQ() {
+    if (S.ko && S.ko.seeds) return new Set(S.ko.seeds.map(x => x.id));
+    try { return S.detection ? E.clinched(S, S.qual) : new Set(); } catch (e) { return new Set(); }
+  }
+  const qMark = (set, id) => (set.has(id) ? ' <span class="qmark">(Q)</span>' : '');
+  function seedLabel(id) {
+    const ko = S.ko; if (!ko || !ko.seeds || !id) return '';
+    const s = ko.seeds.find(x => x.id === id); if (!s) return '';
+    if (ko.seeding === 'cross') { const tn = tableNames(); return (tn[s.tableId] || '').replace(/\s*\+\s*/g, '+') + ' #' + s.pos; }
+    return '(' + s.seed + ')';
+  }
+  // Mirror-image bracket: top half from the left, bottom half from the right, final in the middle
+  function bracketCols(ko, clickable) {
+    const R = ko.rounds.length, final = ko.rounds[R - 1][0];
+    const col = (title, ms, cls) => `<div class="round ${cls || ''}"><h4>${title}</h4><div class="rb">${ms.map(m => bm(m, clickable)).join('')}</div></div>`;
+    const left = [], right = [];
+    for (let r = 0; r < R - 1; r++) {
+      const ms = ko.rounds[r], h = ms.length / 2;
+      left.push(col(E.roundName(ms.length), ms.slice(0, h)));
+      right.unshift(col(E.roundName(ms.length), ms.slice(h), 'right'));
+    }
+    const center = `<div class="round center"><h4>Final</h4><div class="rb center">${bm(final, clickable, 'final')}${ko.third ? `<h4 style="margin-top:14px">Third place</h4>${bm(ko.third, clickable)}` : ''}</div></div>`;
+    return left.join('') + center + right.join('');
+  }
+  function bm(m, clickable, extra) {
+    const r = m.result;
+    const swapped = id => m.id && m.id.startsWith('K0-') && S.ko && S.ko.swaps && S.ko.swaps.some(w => w.id === id);
+    const side = k => { const lab = seedLabel(m['t' + k]) + (swapped(m['t' + k]) ? ' ⇄' : ''); return `<div class="s ${r && r.winner === k ? 'w' : ''}"><span class="nm">${lab ? `<span class="sd">${esc(lab)}</span> ` : ''}${esc(tname(m['t' + k]))}</span><span class="pt">${r ? (r.type === 'wo' ? (r.winner === k ? 'W/O' : '') : r['s' + k] + (r.type === 'ret' && r.winner !== k ? ' <small>ret</small>' : '')) : ''}</span></div>`; };
+    const can = clickable && m.t1 && m.t2;
+    return `<div class="bm ${extra || ''} ${can ? '' : 'empty'}" ${can ? `data-act="edit" data-id="${m.id}"` : ''}>${side(1)}${side(2)}</div>`;
+  }
+
   /* ===================== TV DISPLAY ===================== */
   if (IS_TV) {
     document.body.className = 'tv';
     document.title = 'Leaderboard – TV';
-    let page = 0, view = 'standings', lastTick = Date.now();
+    let page = 0, lastFlip = Date.now(), lastView = '';
     const app = document.getElementById('app');
+    function curView() { let v = S.tvView || 'league'; if (v === 'knockout' && !S.ko) v = 'league'; return v; }
     function tick(force) {
-      const fresh = load(); const changed = fresh.updatedAt !== S.updatedAt; S = fresh;
-      const now = Date.now();
-      if (force || changed || now - lastTick > 15000) {
-        if (!force && !changed) {
-          const tables = E.standings(S);
-          const pages = Math.max(1, Math.ceil(tables.length / 6));
-          if (S.tvMode === 'auto' && S.ko) {
-            if (view === 'standings' && page + 1 < pages) page++;
-            else if (view === 'standings') { view = 'bracket'; page = 0; } else { view = 'standings'; page = 0; }
-          } else { view = S.tvMode === 'bracket' && S.ko ? 'bracket' : 'standings'; page = (page + 1) % pages; }
-          lastTick = now;
-        }
-        if (S.tvMode === 'standings' || !S.ko) view = 'standings';
-        if (S.tvMode === 'bracket' && S.ko) view = 'bracket';
-        renderTV();
+      const fresh = load(); let changed = fresh.updatedAt !== S.updatedAt; S = fresh;
+      const view = curView(), now = Date.now();
+      if (view !== lastView) { page = 0; lastFlip = now; changed = true; }
+      if (view === 'league') {
+        const pages = Math.max(1, Math.ceil(E.tables(S).length / 6));
+        if (pages > 1 && now - lastFlip > 15000) { page = (page + 1) % pages; lastFlip = now; changed = true; }
       }
+      if (force || changed) { lastView = view; renderTV(view); }
       const c = document.getElementById('clock'); if (c) c.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
-    function renderTV() {
+    function renderTV(view) {
       const played = S.matches.filter(m => m.result).length;
       let body = '';
       if (!S.teams.length) body = '<div class="tv-empty">Waiting for fixtures…</div>';
-      else if (view === 'bracket') body = tvBracket();
+      else if (view === 'knockout') body = tvBracket();
+      else if (view === 'qualified') body = tvQualified();
       else body = tvStandings();
       const koM = S.ko ? S.ko.rounds.flat().concat(S.ko.third ? [S.ko.third] : []) : [];
       const recent = S.matches.concat(koM).filter(m => m.result && m.result.at).sort((a, b) => b.result.at - a.result.at).slice(0, 6)
         .map(m => `<span class="r">${esc(short(tname(m.t1)))} <b>${m.result.s1}–${m.result.s2}</b> ${esc(short(tname(m.t2)))}</span>`).join('');
+      const sub = { league: 'League standings', qualified: 'Qualified teams', knockout: 'Knockout' }[view];
       app.innerHTML = `<div class="tv-wrap">
-        <div class="tv-head"><h1>🏸 ${esc(S.name)}</h1><div class="sub">${view === 'bracket' ? 'Knockout' : 'League standings'} · ${played}/${S.matches.length} league matches</div><div class="clock" id="clock"></div></div>
+        <div class="tv-head"><div class="tv-title">${S.club ? `<div class="tv-club">${esc(S.club)}</div>` : ''}<h1>🏸 ${esc(S.name)}${S.type ? ` <span class="tv-type">${esc(S.type)}</span>` : ''}</h1>${S.venue || S.date ? `<div class="tv-info">${esc([S.venue, fmtDate(S.date)].filter(Boolean).join(' · '))}</div>` : ''}</div>
+        <div class="tv-right"><div class="clock" id="clock"></div><div class="sub">${sub} · ${played}/${S.matches.length} league matches</div></div></div>
         <div class="tv-body" id="tvb">${body}</div>
         <div class="tv-foot">${recent ? 'Latest: ' + recent : ''}</div></div>`;
     }
+    function tvQualified() {
+      const qd = qualifiedData();
+      if (!qd) return '<div class="tv-empty">Qualification not set yet</div>';
+      const L = qd.list, half = Math.ceil(L.length / 2), tn = tableNames();
+      const cols = L.length > 12 ? [L.slice(0, half), L.slice(half)] : [L];
+      setTimeout(() => { const b = $('#tvb'); if (b) { b.style.gridTemplateColumns = `repeat(${cols.length},1fr)`; b.style.gridTemplateRows = (qd.provisional ? 'auto ' : '') + '1fr'; } });
+      const fs = L.length > 24 ? 'min(2.5vh,1.2vw)' : 'min(3vh,1.5vw)';
+      return (qd.provisional ? `<div class="tv-prov" style="grid-column:1/-1">Provisional – ${qd.pending} league match${qd.pending > 1 ? 'es' : ''} still to play</div>` : '') +
+        cols.map(c => `<div class="tv-table"><table style="font-size:${fs}"><thead><tr><th>Seed</th><th>Team</th><th>From</th><th class="num">W</th><th class="num">PD</th><th class="num">Pts</th></tr></thead><tbody>${
+          c.map(r => `<tr class="q"><td><b>${r.seed}</b></td><td class="tn">${esc(tname(r.id))}${qd.provisional ? '' : ' <span class="qmark">(Q)</span>'}</td><td>${esc(tn[r.tableId] || '')} #${r.pos}</td><td class="num">${r.W}</td><td class="num">${r.PD > 0 ? '+' : ''}${r.PD}</td><td class="num"><b>${r.Pts}</b></td></tr>`).join('')
+        }</tbody></table></div>`).join('');
+    }
     function short(n) { return n.length > 22 ? n.slice(0, 21) + '…' : n; }
     function tvStandings() {
-      const tables = E.standings(S); const q = safeQual();
-      const qset = q && !q.error ? new Set(q.list.map(r => r.id)) : new Set();
+      const tables = E.standings(S); const cq = confirmedQ(), qset = cq;
       const pages = Math.max(1, Math.ceil(tables.length / 6)); if (page >= pages) page = 0;
       const show = tables.slice(page * 6, page * 6 + 6);
       const cols = show.length <= 2 ? show.length : show.length <= 4 ? 2 : 3;
       const rowsPer = Math.ceil(show.length / cols);
       setTimeout(() => { const b = $('#tvb'); if (b) { b.style.gridTemplateColumns = `repeat(${cols},1fr)`; b.style.gridTemplateRows = `repeat(${rowsPer},1fr)`; } });
       return show.map(t => `<div class="tv-table"><h2>${esc(t.name)}${pages > 1 ? '' : ''}</h2><table><thead><tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">PD</th><th class="num">Pts</th></tr></thead><tbody>${
-        t.rows.map(r => `<tr class="${qset.has(r.id) ? 'q' : ''}"><td>${r.pos}</td><td class="tn">${esc(tname(r.id))}</td><td class="num">${r.P}</td><td class="num">${r.W}</td><td class="num">${r.L}</td><td class="num">${r.PD > 0 ? '+' : ''}${r.PD}</td><td class="num"><b>${r.Pts}</b></td></tr>`).join('')
+        t.rows.map(r => `<tr class="${qset.has(r.id) ? 'q' : ''}"><td>${r.pos}</td><td class="tn">${esc(tname(r.id))}${qMark(cq, r.id)}</td><td class="num">${r.P}</td><td class="num">${r.W}</td><td class="num">${r.L}</td><td class="num">${r.PD > 0 ? '+' : ''}${r.PD}</td><td class="num"><b>${r.Pts}</b></td></tr>`).join('')
       }</tbody></table></div>`).join('') + (pages > 1 ? `<div style="position:fixed;right:1.6vw;top:4.2vw;color:#7f93a8">Page ${page + 1}/${pages}</div>` : '');
     }
     function tvBracket() {
       const ko = S.ko; const champ = E.champion(ko);
-      const first = ko.rounds[0].length;
-      const fs = first >= 16 ? 'min(1.15vh,.75vw)' : first >= 8 ? 'min(2.1vh,1vw)' : 'min(2.8vh,1.4vw)';
+      const side = Math.max(1, ko.rounds[0].length / 2), cols = ko.rounds.length * 2 - 1;
+      const fs = side >= 8 ? 'min(1.75vh,.82vw)' : side >= 4 ? 'min(2.4vh,1.05vw)' : 'min(3vh,1.4vw)';
       setTimeout(() => { const b = $('#tvb'); if (b) { b.style.gridTemplateColumns = '1fr'; b.style.gridTemplateRows = champ ? 'auto 1fr' : '1fr'; } });
       return (champ ? `<div class="tv-champ">🏆 Champions: ${esc(tname(champ))}</div>` : '') +
         `<div class="tv-bracket" style="--bfs:${fs}">${bracketCols(ko, false)}</div>`;
@@ -634,21 +761,50 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   }
 
   /* ===================== ADMIN ===================== */
-  let tab = S.teams.length ? 'matches' : 'setup';
+  let tab = !S.detailsSaved ? 'details' : S.teams.length ? 'matches' : 'setup';
   let imp = null; // import wizard state
   let mFilter = 'pending', mSearch = '';
 
-  function safeQual() { try { return S.detection ? E.qualify(S, S.qual) : null; } catch (e) { return null; } }
-
   function render() {
-    const tabs = [['setup', 'Setup'], ['matches', 'Matches'], ['standings', 'Standings'], ['knockout', 'Knockout'], ['backup', 'Backup & Settings'], ['help', 'Help']];
+    const tabs = [['details', 'Tournament'], ['setup', 'Setup'], ['matches', 'Matches'], ['standings', 'Standings'], ['knockout', 'Knockout'], ['backup', 'Backup & Settings'], ['help', 'Help']];
     $('#app').innerHTML = `
-      <header class="top"><h1>🏸 ${esc(S.name)}</h1><span class="saved" id="saved">${storageOk ? '' : '⚠ Not saved'}</span>
+      <header class="top"><h1>${S.club ? `<span class="hclub">${esc(S.club)}</span>` : ''}🏸 ${esc(S.name)}${S.type ? ` <span class="htype">${esc(S.type)}</span>` : ''}</h1><span class="saved" id="saved">${storageOk ? '' : '⚠ Not saved'}</span>
+        <div class="seg tvseg" title="What the TV shows">${[['league', 'League'], ['qualified', 'Qualified'], ['knockout', 'Knockout']].map(([k, l]) => `<button class="${(S.tvView || 'league') === k ? 'on' : ''}" data-act="tvview" data-v="${k}" ${k === 'knockout' && !S.ko ? 'disabled' : ''}>${l}</button>`).join('')}</div>
         <button data-act="tv">📺 Open TV display</button></header>
       <nav class="tabs">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-tab="${k}">${l}</button>`).join('')}</nav>
-      <main>${({ setup: vSetup, matches: vMatches, standings: vStandings, knockout: vKnockout, backup: vBackup, help: vHelp })[tab]()}</main>
+      <main>${({ details: vDetails, setup: vSetup, matches: vMatches, standings: vStandings, knockout: vKnockout, backup: vBackup, help: vHelp })[tab]()}</main>
       <div id="modal"></div>`;
     if (tab === 'matches') { const s = $('#msearch'); if (s && document.activeElement !== s && mSearch) { s.focus(); s.setSelectionRange(s.value.length, s.value.length); } }
+  }
+
+  /* ---------- Tournament details (start page) ---------- */
+  function vDetails() {
+    const custom = S.type && !TYPES.includes(S.type);
+    return `<div class="card details"><h2>${S.detailsSaved ? 'Tournament details' : '👋 Welcome – let’s set up your tournament'}</h2>
+      <p class="small mute">These details appear at the top of every TV screen and on exported results.</p>
+      <div class="grid2">
+        <div class="field"><label>Club / organiser name *</label><input type="text" id="d-club" maxlength="80" placeholder="e.g. Chennai Shuttlers Club" value="${esc(S.club)}"></div>
+        <div class="field"><label>Tournament name *</label><input type="text" id="d-name" maxlength="80" placeholder="e.g. Winter Open 2026" value="${S.detailsSaved || S.name !== 'Badminton Tournament' ? esc(S.name) : ''}"></div>
+        <div class="field"><label>Tournament type *</label><select id="d-type"><option value="">— choose —</option>${TYPES.map(t => `<option ${S.type === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}<option value="__other" ${custom ? 'selected' : ''}>Other…</option></select>
+          <input type="text" id="d-type2" maxlength="40" placeholder="Type name" value="${custom ? esc(S.type) : ''}" style="margin-top:6px;${custom ? '' : 'display:none'}"></div>
+        <div class="field"><label>Venue (optional)</label><input type="text" id="d-venue" maxlength="80" placeholder="e.g. Indoor Stadium, Court 1–4" value="${esc(S.venue)}"></div>
+        <div class="field"><label>Date (optional)</label><input type="date" id="d-date" value="${esc(S.date)}"></div>
+      </div>
+      <div id="d-err"></div>
+      <div class="row" style="margin-top:14px"><button class="primary" data-act="details-save">${S.detailsSaved ? 'Save changes' : 'Save & continue →'}</button>
+      ${S.detailsSaved ? '' : '<button data-act="details-skip">Skip for now</button>'}</div></div>
+      ${S.detailsSaved ? '' : '<p class="small mute">Next you\'ll load the fixture Excel (or try a demo).</p>'}`;
+  }
+  function saveDetails() {
+    const v = id => ($('#' + id) ? $('#' + id).value.trim() : '');
+    const sel = v('d-type'), type = sel === '__other' ? v('d-type2') : sel;
+    const club = v('d-club'), name = v('d-name');
+    const miss = [!club && 'club name', !name && 'tournament name', !type && 'tournament type'].filter(Boolean);
+    if (miss.length) { $('#d-err').innerHTML = `<div class="note err">Please fill in the ${miss.join(', ')}.</div>`; return; }
+    const first = !S.detailsSaved;
+    Object.assign(S, { club, name, type, venue: v('d-venue'), date: v('d-date'), detailsSaved: true });
+    save(); if (first) tab = S.teams.length ? 'matches' : 'setup'; render();
+    if (!first) { const e = $('#d-err'); if (e) e.innerHTML = '<div class="note">✔ Saved – the TV shows the new details.</div>'; }
   }
 
   /* ---------- Setup ---------- */
@@ -760,7 +916,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     imp.check = b;
   }
   function startTournament(b) {
-    const keep = { name: S.name, settings: S.settings, tvMode: S.tvMode };
+    const keep = { name: S.name, club: S.club, type: S.type, venue: S.venue, date: S.date, detailsSaved: S.detailsSaved, settings: S.settings, demo: !!b.demo };
     S = Object.assign(blank(), keep, { teams: b.teams, matches: b.matches, detection: b.det });
     const T = E.tables(S).length, n = S.teams.length;
     const sizes = E.validSizes(n); S.qual.size = sizes.includes(16) ? 16 : sizes[sizes.length - 1] || 2;
@@ -781,7 +937,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       ${S.ko ? '<div class="note warn small">Knockout already drawn – changing league results now will not change the draw (reset the knockout to redraw).</div>' : ''}
       <div class="row" style="margin-bottom:10px"><div class="seg" style="margin:0">${[['pending', 'To play'], ['done', 'Played'], ['all', 'All']].map(([k, l]) => `<button class="${mFilter === k ? 'on' : ''}" data-act="mf" data-v="${k}">${l}</button>`).join('')}</div>
       <input type="search" id="msearch" placeholder="Search team, match no, court…" value="${esc(mSearch)}" style="flex:1;min-width:180px"></div>
-      ${/^demo/i.test(S.name) && S.matches.some(m => !m.result) ? '<p><button class="small" data-act="fill-league">🎲 Demo: fill remaining matches with random scores</button></p>' : ''}
+      ${S.demo && S.matches.some(m => !m.result) ? '<p><button class="small" data-act="fill-league">🎲 Demo: fill remaining matches with random scores</button></p>' : ''}
       <div class="mlist">${list.map(m => matchRow(m, tOf)).join('') || '<p class="mute">No matches here.</p>'}</div></div>`;
   }
   function matchRow(m, tOf) {
@@ -850,15 +1006,14 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   /* ---------- Standings ---------- */
   function vStandings() {
     if (!S.teams.length) return emptyCard();
-    const tables = E.standings(S), q = safeQual();
-    const qmap = {}; if (q && !q.error) q.list.forEach(r => (qmap[r.id] = r.how));
+    const tables = E.standings(S), q = safeQual(); const cq = confirmedQ();
     return `<div class="card"><div class="row" style="justify-content:space-between"><h2 style="margin:0">Standings</h2>
       <span class="small mute">Ranking: Points (${S.settings.winPts} per win) → Point difference → Points scored → Head-to-head → Organizer's choice</span></div>
-      <p class="small">${q && !q.error ? `<span class="chip gold">Gold</span> = in the ${q.list.length} qualifying places (${qualText()}). Change this in <a href="#" data-tab="knockout">Knockout</a>.` : q && q.error ? `<span class="tie">${esc(q.error)}</span>` : ''}
+      <p class="small">${q && !q.error ? `<span class="qmark">Gold (Q)</span> = sure to qualify – no remaining result can knock them out (${cq.size} of ${q.list.length} places decided). Rule: ${qualText()} – set in <a href="#" data-tab="knockout">Knockout</a>.` : q && q.error ? `<span class="tie">${esc(q.error)}</span>` : ''}
       ${tables.some(t => t.rows.some(r => r.tie)) ? '<br><span class="tie">⚠ = level on everything so far.</span> If it matters at the end, use ↑ to set the order (e.g. after a coin toss).' : ''}</p></div>
       <div class="tables">${tables.map(t => `<div class="card scroll" style="margin:0"><h2>${esc(t.name)}</h2><table>
         <thead><tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">PF</th><th class="num">PA</th><th class="num">PD</th><th class="num">Pts</th><th></th></tr></thead><tbody>
-        ${t.rows.map(r => `<tr class="${qmap[r.id] ? 'q' : ''} ${qmap[r.id] === 'best' ? 'best' : ''}"><td>${r.pos}</td><td class="tn">${esc(tname(r.id))}${qmap[r.id] === 'best' ? ' <span class="chip gold" title="Qualifies as one of the best next-placed teams">best</span>' : ''}</td>
+        ${t.rows.map(r => `<tr class="${cq.has(r.id) ? 'q' : ''}"><td>${r.pos}</td><td class="tn">${esc(tname(r.id))}${qMark(cq, r.id)}</td>
           <td class="num">${r.P}</td><td class="num">${r.W}</td><td class="num">${r.L}</td><td class="num">${r.PF}</td><td class="num">${r.PA}</td><td class="num">${r.PD > 0 ? '+' : ''}${r.PD}</td><td class="num"><b>${r.Pts}</b></td>
           <td>${r.tie ? `<span class="tie" title="Tied">⚠</span>${r.tieGroup[0] !== r.id && t.rows.findIndex(x => x.id === r.id) > t.rows.findIndex(x => r.tieGroup.includes(x.id)) ? ` <button class="small" data-act="up" data-t="${t.id}" data-id="${r.id}" title="Move above the tied team">↑</button>` : ''}` : r.manual ? '<span class="mute" title="Order set by organizer">✋</span>' : ''}</td></tr>`).join('')}
         </tbody></table></div>`).join('')}</div>
@@ -883,7 +1038,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       </div>
       <div class="row" style="margin-top:10px"><label><input type="checkbox" data-act="set-bool" data-f="koDeuce" ${S.settings.koDeuce ? 'checked' : ''}> Deuce in knockouts (win by 2, cap ${S.settings.koCap})</label>
       <label><input type="checkbox" data-act="set-bool" data-f="thirdPlace" ${S.settings.thirdPlace ? 'checked' : ''}> Third-place match</label></div>
-      <p class="small mute">Teams from the same table never meet in the first knockout round – the app swaps opponents if needed. ${q.mode === 'group' ? 'Seeds: table winners first, then 2nd places, etc.; within the same place, by points → PD → points scored.' : 'Seeds follow the overall ranking.'}</p></div>`;
+      <p class="small mute">If two teams from the same table would meet in the first round, you'll see the clash below and choose: swap opponents, or keep the strict pairing. ${q.mode === 'group' ? 'Seeds: table winners first, then 2nd places, etc.; within the same place, by points → PD → points scored.' : 'Seeds follow the overall ranking.'}</p></div>`;
     if (!res) return h;
     if (res.error) return h + `<div class="note err">${esc(res.error)}</div>`;
     const dr = E.draw(res, q, E.tables(S).map(t => t.id));
@@ -894,23 +1049,23 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     if (pending) h += `<div class="note warn">${pending} league match${pending > 1 ? 'es are' : ' is'} still to be played – this is a preview based on current standings.</div>`;
     h += `<div class="card"><h2>Qualified teams (${res.list.length})</h2><div class="scroll"><table><thead><tr><th>Seed</th><th>Team</th><th>Table</th><th class="num">Pos</th><th class="num">Pts</th><th class="num">PD</th><th class="num">PF</th><th>How</th></tr></thead><tbody>
       ${res.list.map(r => `<tr><td>${r.seed}</td><td class="tn">${esc(tname(r.id))}</td><td>${esc(tn[r.tableId])}</td><td class="num">${r.pos}</td><td class="num">${r.Pts}</td><td class="num">${r.PD}</td><td class="num">${r.PF}</td><td>${r.how === 'top' ? 'Top ' + q.perTable : r.how === 'best' ? `Best ${ord(r.pos)}` : 'Overall'}</td></tr>`).join('')}</tbody></table></div>
-      <h3>First-round draw</h3>${dr.warnings.length ? `<div class="note warn">${dr.warnings.map(esc).join('<br>')}</div>` : ''}
-      <div class="scroll"><table>${dr.rounds[0].map((m, i) => `<tr><td class="mute">${i + 1}</td><td>(${m.seed1}) ${esc(tname(m.t1))} <span class="mute small">${esc(tn[byId[m.t1].tableId])}</span></td><td class="mute">vs</td><td>(${m.seed2}) ${esc(tname(m.t2))} <span class="mute small">${esc(tn[byId[m.t2].tableId])}</span></td></tr>`).join('')}</table></div>
-      <p><button class="primary" data-act="ko-go">Generate knockout bracket</button></p></div>`;
+      <h3>First-round draw</h3>${clashBox(dr, tn)}${dr.warnings.length ? `<div class="note warn">${dr.warnings.map(esc).join('<br>')}</div>` : ''}
+      <div class="scroll"><table>${dr.rounds[0].map((m, i) => { const sw = dr.swaps.find(x => x.id === m.t2); const same = byId[m.t1].tableId === byId[m.t2].tableId;
+        return `<tr><td class="mute">${i + 1}</td><td>(${m.seed1}) ${esc(tname(m.t1))} <span class="mute small">${esc(tn[byId[m.t1].tableId])}</span></td><td class="mute">vs</td><td>(${m.seed2}) ${esc(tname(m.t2))} <span class="mute small">${esc(tn[byId[m.t2].tableId])}</span>${sw ? ` <span class="chip gold" title="Swapped">⇄ swapped (was seed ${sw.from})</span>` : ''}${same ? ' <span class="tie">⚠ same table</span>' : ''}</td></tr>`; }).join('')}</table></div>
+      <p><button class="primary" data-act="ko-go">Generate knockout bracket…</button></p></div>`;
     return h;
   }
+  function clashBox(dr, tn) {
+    if (!dr.origClashes.length) return `<div class="note small">✔ No same-table clashes – the draw follows the pairing exactly.</div>`;
+    const avoid = S.qual.avoidSame !== false;
+    return `<div class="note warn"><b>${dr.origClashes.length} first-round match${dr.origClashes.length > 1 ? 'es' : ''} would be between teams from the same table:</b>
+      <ul>${dr.origClashes.map(c => `<li>Seed ${c.a} v seed ${c.b} (both ${esc(tn[c.tableId])})</li>`).join('')}</ul>
+      ${dr.swaps.length && avoid ? `<b>To avoid ${dr.origClashes.length > 1 ? 'them' : 'it'}, these opponents are swapped:</b><ul>${dr.swaps.map(w => `<li>Seed ${w.top} plays seed ${w.to} instead of seed ${w.from}</li>`).join('')}</ul>` : ''}
+      <div class="row" style="margin-top:6px"><b>Organizer's choice:</b>
+      <label><input type="radio" name="avoid" data-act="avoid" value="1" ${avoid ? 'checked' : ''}> Swap opponents (no same-table matches)</label>
+      <label><input type="radio" name="avoid" data-act="avoid" value="0" ${avoid ? '' : 'checked'}> Keep strict pairing (allow same-table matches)</label></div></div>`;
+  }
   const ord = n => n + (['th', 'st', 'nd', 'rd'][(n % 100 > 10 && n % 100 < 14) ? 0 : n % 10] || 'th');
-  function bracketCols(ko, clickable) {
-    const cols = ko.rounds.map((r, ri) => `<div class="round"><h4>${E.roundName(r.length)}</h4><div class="rb">${r.map(m => bm(m, clickable, ri === 0)).join('')}</div></div>`);
-    if (ko.third) cols.push(`<div class="round"><h4>Third place</h4><div class="rb">${bm(ko.third, clickable)}</div></div>`);
-    return cols.join('');
-  }
-  function bm(m, clickable, showSeed) {
-    const r = m.result;
-    const side = k => `<div class="s ${r && r.winner === k ? 'w' : ''}"><span>${showSeed && m['seed' + k] ? `<span class="sd">${m['seed' + k]}</span>` : ''}${esc(tname(m['t' + k]))}</span><span>${r ? (r.type === 'wo' ? (r.winner === k ? 'W/O' : '') : r['s' + k] + (r.type === 'ret' && r.winner !== k ? ' <small>ret</small>' : '')) : ''}</span></div>`;
-    const can = clickable && m.t1 && m.t2;
-    return `<div class="bm ${can ? '' : 'empty'}" ${can ? `data-act="edit" data-id="${m.id}"` : ''}>${side(1)}${side(2)}</div>`;
-  }
   function vBracket() {
     const champ = E.champion(S.ko);
     return `${champ ? `<div class="champ">🏆 Champions: ${esc(tname(champ))}</div>` : ''}
@@ -918,7 +1073,8 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       <div class="row"><label class="small"><input type="checkbox" data-act="set-bool" data-f="koDeuce" ${S.settings.koDeuce ? 'checked' : ''}> Deuce (cap ${S.settings.koCap})</label>
       <label class="small"><input type="checkbox" data-act="set-bool" data-f="thirdPlace" ${S.settings.thirdPlace ? 'checked' : ''}> Third-place match</label>
       <button class="danger small" data-act="ko-reset">Reset knockout</button></div></div>
-      <p class="small mute">Tap a match to enter the score. Winners move to the next round automatically.${/^demo/i.test(S.name) && koOpen().length ? ' <button class="small" data-act="fill-ko">🎲 Demo: fill next round</button>' : ''}</p>
+      <p class="small mute">Tap a match to enter the score. Winners move to the next round automatically.${S.demo && koOpen().length ? ' <button class="small" data-act="fill-ko">🎲 Demo: fill next round</button>' : ''}</p>
+      ${S.ko.swaps && S.ko.swaps.length ? `<p class="small mute">⇄ = opponent swapped so teams from the same table don't meet: ${S.ko.swaps.map(w => `seed ${w.top} v ${w.to} (was ${w.from})`).join(', ')}.</p>` : ''}
       <div class="bracket">${bracketCols(S.ko, true)}</div></div>`;
   }
 
@@ -928,13 +1084,11 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     return `<div class="card"><h2>Backup</h2><p class="small mute">Everything is saved automatically in this browser. Export a backup every few matches – it lets you continue on another laptop if needed.</p>
       <div class="row"><button class="primary" data-act="export-json">⬇ Download backup (.json)</button><label class="row" style="gap:6px"><button data-act="pick-json">⬆ Restore backup</button></label><input type="file" id="jfile" accept=".json" hidden>
       <button data-act="export-xlsx" ${S.teams.length ? '' : 'disabled'}>⬇ Results to Excel</button><button data-act="template">⬇ Blank fixture template</button></div></div>
-      <div class="card"><h2>Settings</h2><div class="grid2">
-      <div class="field"><label>Tournament name</label><input type="text" data-act="set-name" value="${esc(S.name)}"></div>
+      <div class="card"><h2>Settings</h2><p class="small mute">Club, tournament name and type are in the <a href="#" data-tab="details">Tournament</a> tab.</p><div class="grid2">
       <div class="field"><label>Points for a win</label><input type="number" min="1" data-act="set-num" data-f="winPts" value="${s.winPts}"></div>
       <div class="field"><label>League game to</label><input type="number" min="5" data-act="set-num" data-f="leagueTarget" value="${s.leagueTarget}"></div>
       <div class="field"><label>Knockout game to</label><input type="number" min="5" data-act="set-num" data-f="koTarget" value="${s.koTarget}"></div>
       <div class="field"><label>Deuce cap (knockout)</label><input type="number" min="5" data-act="set-num" data-f="koCap" value="${s.koCap}"></div>
-      <div class="field"><label>TV display shows</label><select data-act="tvmode"><option value="auto" ${S.tvMode === 'auto' ? 'selected' : ''}>Auto (rotate standings & bracket)</option><option value="standings" ${S.tvMode === 'standings' ? 'selected' : ''}>Standings only</option><option value="bracket" ${S.tvMode === 'bracket' ? 'selected' : ''}>Bracket only</option></select></div>
       </div><div class="row" style="margin-top:10px"><label><input type="checkbox" data-act="set-bool" data-f="leagueDeuce" ${s.leagueDeuce ? 'checked' : ''}> Deuce in league games</label>
       <label><input type="checkbox" data-act="set-bool" data-f="koDeuce" ${s.koDeuce ? 'checked' : ''}> Deuce in knockout games</label>
       <label><input type="checkbox" data-act="set-bool" data-f="thirdPlace" ${s.thirdPlace ? 'checked' : ''}> Third-place match</label></div></div>
@@ -947,9 +1101,10 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   function vHelp() {
     return `<div class="card help"><h2>How to use</h2>
       <h3>Before the tournament</h3><ol>
+      <li>In <b>Tournament</b>, enter the club name, tournament name and type (shown at the top of every TV screen).</li>
       <li>Open <b>Setup</b> and choose the organizers' fixture Excel. Check the column choices and press <b>Check fixtures</b>.</li>
       <li>The app tells you if it's <b>round robin</b> or <b>cross group</b> and warns about missing/duplicate matches or misspelt team names. Fix the Excel and re-import if needed, then press <b>Start tournament</b>.</li>
-      <li>In <b>Knockout</b>, pick the next round (Round of 32/16…), how teams qualify, and the pairing style. Gold rows in Standings show who's currently through.</li></ol>
+      <li>In <b>Knockout</b>, pick the next round (Round of 32/16…), how teams qualify, and the pairing style. Set this before the first match: a team turns gold with (Q) in Standings and on the TV the moment it is sure to qualify.</li></ol>
       <h3>On the day</h3><ol>
       <li>Connect the laptop to the TV, press <b>📺 Open TV display</b>, drag that window to the TV and double-click it for full screen.</li>
       <li>Keep this window on the laptop. In <b>Matches</b>, tap a match, type both scores, press Enter. The TV updates instantly.</li>
@@ -968,7 +1123,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   /* ---------- files ---------- */
   function download(name, blob) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
   const stamp = () => new Date().toISOString().slice(0, 16).replace(/[-:T]/g, '');
-  function fileBase() { return (S.name || 'tournament').replace(/[^\w]+/g, '_').slice(0, 40); }
+  function fileBase() { return [S.club, S.name].filter(Boolean).join(' ').replace(/[^\w]+/g, '_').slice(0, 60) || 'tournament'; }
   function exportTemplate() {
     const wb = XLSX.utils.book_new();
     const fx = [['Match No', 'Group', 'Team 1', 'Team 2', 'Court', 'Time'], [1, 'A+B', 'A1 - Team name', 'B1 - Team name', 1, '9:00 AM'], [2, 'A+B', 'A2 - Team name', 'B2 - Team name', 2, '9:00 AM']];
@@ -980,6 +1135,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   }
   function exportXlsx() {
     const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([['Club', S.club], ['Tournament', S.name], ['Type', S.type], ['Venue', S.venue], ['Date', S.date], ['Exported', new Date().toLocaleString()]]), 'Info');
     const st = [['Table', 'Pos', 'Team', 'P', 'W', 'L', 'PF', 'PA', 'PD', 'Pts']];
     E.standings(S).forEach(t => t.rows.forEach(r => st.push([t.name, r.pos, tname(r.id), r.P, r.W, r.L, r.PF, r.PA, r.PD, r.Pts])));
     XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(st), 'Standings');
@@ -998,8 +1154,8 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     if (S.teams.length && !confirm('Replace the current tournament with demo data?')) return;
     const d = mode === 'cross' ? E.demo(12, 4, 'cross', 5) : E.demo(8, 4, 'rr', 5);
     const b = E.buildFromRows(d.rows, d.teams, { useCode: true }); b.det = E.detect(b.teams, b.matches);
-    S.name = mode === 'cross' ? 'Demo – 48 teams cross group' : 'Demo – 32 teams round robin';
-    startTournament(b);
+    if (!S.detailsSaved) Object.assign(S, { name: mode === 'cross' ? 'Demo – 48 teams cross group' : 'Demo – 32 teams round robin', club: 'Demo Club', type: "Men's Doubles" });
+    b.demo = true; startTournament(b);
   }
 
   /* ---------- testing: random scores ---------- */
@@ -1066,13 +1222,25 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
         if (pending && !confirm(`${pending} league matches are not played yet. Generate the knockout from the current standings anyway?`)) return;
         const res = safeQual(); if (!res || res.error) return;
         if (res.tieAtCut && !confirm('There is still a tie at the qualification line. Continue with the current order?')) return;
-        S.ko = E.draw(res, S.qual, E.tables(S).map(t => t.id)); delete S.ko.warnings; E.koResolve(S.ko, S.settings.thirdPlace);
-        S.tvMode = S.tvMode || 'auto'; save(); render(); break;
+        const dr = E.draw(res, S.qual, E.tables(S).map(t => t.id));
+        const summary = `Generate the ${E.roundName(dr.rounds[0].length)} now?\n\n` +
+          `Qualification: ${qualText()}\nPairing: ${S.qual.seeding === 'cross' ? 'Cross-group' : 'High vs low seed'}\n` +
+          (dr.origClashes.length ? (S.qual.avoidSame !== false ? `Same-table clashes: ${dr.origClashes.length} fixed by swapping opponents (${dr.swaps.length} matches changed)\n` : `Same-table clashes: kept as strict pairing (${dr.clashes.length} same-table match(es))\n`) : 'Same-table clashes: none\n') +
+          `\nScores already in the bracket will be lost if you reset it later.`;
+        if (!confirm(summary)) return;
+        S.ko = dr; const swaps = dr.swaps; delete S.ko.warnings; delete S.ko.clashes; delete S.ko.origClashes;
+        S.ko.swaps = S.qual.avoidSame !== false ? swaps : []; E.koResolve(S.ko, S.settings.thirdPlace);
+        S.ko.seeding = S.qual.seeding;
+        S.ko.seeds = res.list.map(r => ({ id: r.id, seed: r.seed, tableId: r.tableId, pos: r.pos, P: r.P, W: r.W, L: r.L, PD: r.PD, PF: r.PF, Pts: r.Pts, how: r.how }));
+        S.tvView = 'knockout'; save(); render(); break;
       }
-      case 'ko-reset': if (confirm('Delete the knockout bracket and all knockout scores?')) { S.ko = null; save(); render(); } break;
+      case 'ko-reset': if (confirm('Delete the knockout bracket and all knockout scores?')) { S.ko = null; if (S.tvView === 'knockout') S.tvView = 'qualified'; save(); render(); } break;
+      case 'tvview': S.tvView = el.dataset.v; save(); render(); break;
       case 'export-json': download(fileBase() + '_backup_' + stamp() + '.json', new Blob([JSON.stringify(S)], { type: 'application/json' })); break;
       case 'pick-json': $('#jfile').click(); break;
       case 'export-xlsx': exportXlsx(); break;
+      case 'details-save': saveDetails(); break;
+      case 'details-skip': S.detailsSaved = true; save(); tab = 'setup'; render(); break;
       case 'fill-league': fillLeague(); break;
       case 'fill-ko': fillKo(); break;
       case 'wipe': if (confirm('Delete ALL data in this browser? (Download a backup first!)') && confirm('Really delete everything?')) { S = blank(); save(); tab = 'setup'; render(); } break;
@@ -1081,12 +1249,14 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   document.addEventListener('change', e => {
     const el = e.target; const a = el.dataset.act;
     if (el.id === 'xfile' && el.files[0]) return readExcel(el.files[0]);
+    if (el.id === 'd-type') { const o = $('#d-type2'); if (o) { o.style.display = el.value === '__other' ? '' : 'none'; if (el.value === '__other') o.focus(); } return; }
     if (el.id === 'jfile' && el.files[0]) return readBackup(el.files[0]);
     if (!a) return;
     if (a === 'imp-sheet') { setupSheet(el.value); render(); }
     else if (a === 'imp-tsheet') { if (el.value) setupTeamSheet(el.value); else imp.teamSheet = ''; imp.check = null; render(); }
     else if (a === 'imp-map') { imp.map[el.dataset.f] = el.value === 'vs' ? 'vs' : +el.value; imp.check = null; render(); }
     else if (a === 'imp-tcol') { imp[el.dataset.f] = +el.value; imp.check = null; render(); }
+    else if (a === 'avoid') { S.qual.avoidSame = el.value === '1'; save(); render(); }
     else if (a === 'tableMode') { S.tableMode = el.value; S.manual = {}; const T = E.tables(S).length; S.qual.perTable = Math.min(S.qual.perTable, Math.floor(S.qual.size / T)); save(); render(); }
     else if (a === 'q') {
       const f = el.dataset.f; S.qual[f] = f === 'size' || f === 'perTable' ? +el.value : el.value;
@@ -1096,10 +1266,10 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     else if (a === 'set-bool') { S.settings[el.dataset.f] = el.checked; if (el.dataset.f === 'thirdPlace' && S.ko) E.koResolve(S.ko, el.checked); save(); render(); }
     else if (a === 'set-num') { const v = parseInt(el.value, 10); if (v > 0) { S.settings[el.dataset.f] = v; save(); render(); } }
     else if (a === 'set-name') { S.name = el.value.trim() || 'Badminton Tournament'; save(); render(); }
-    else if (a === 'tvmode') { S.tvMode = el.value; save(); }
   });
   document.addEventListener('input', e => { if (e.target.id === 'msearch') { mSearch = e.target.value; const pos = e.target.selectionStart; render(); const s = $('#msearch'); if (s) { s.focus(); s.setSelectionRange(pos, pos); } } });
   document.addEventListener('keydown', e => {
+    if (!md && e.key === 'Enter' && e.target.closest && e.target.closest('.details') && e.target.tagName === 'INPUT') { e.preventDefault(); saveDetails(); return; }
     if (!md) return;
     if (e.key === 'Escape') { md = null; drawModal(); }
     if (e.key === 'Enter') { e.preventDefault(); if (e.target.id === 's1' && $('#s2') && $('#s2').value === '') { $('#s2').focus(); return; } saveModal(); }

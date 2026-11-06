@@ -24,6 +24,7 @@ Anyone with the link can use it, with no login and without you being there. Only
 
 ## 2. Before the tournament
 
+0. The app opens on the **Tournament** page. Enter the **club name**, **tournament name** and **type** (Men's Doubles, Singles, …), plus venue and date if you like, then press **Save & continue**. These details appear at the top of every TV screen and in the Excel export. You can change them later in the **Tournament** tab.
 1. Open the app and go to **Setup → Choose file**, then select the organizers' fixture Excel.
    - Any layout works. The app guesses which column is Match No / Team 1 / Team 2 / Group / Court / Time, and you can correct each one.
    - One column like `Smashers vs Hawks` also works (choose *"same cell as Team 1, split on vs"*).
@@ -42,21 +43,22 @@ Anyone with the link can use it, with no login and without you being there. Only
    - **Pairing:** *High vs low seed* (1 v 32) or *Cross-group* (table winners v lower places of the next table)
    - Deuce and third-place match on/off
 
-   Qualifying teams appear **gold** in Standings and on the TV as the league progresses.
+   Set this **before the first match**. After every score the app checks which teams can no longer be caught: those teams turn **gold with (Q)** in Standings and on the TV. A team is only marked once no remaining result could knock it out, so gold never has to be taken back.
 
 ## 3. On the day
 
 1. Connect the laptop to the TV and set the display to **Extend**.
 2. Press **📺 Open TV display**, drag the new window to the TV, and double-click it for full screen.
-3. Keep the main window on the laptop. In **Matches**, tap a match, type both scores, and press **Enter**. The TV updates instantly.
+3. Choose what the TV shows with the **League | Qualified | Knockout** switch in the top bar. The TV stays on that view until you change it; it only flips pages on its own when there are more than 6 standings tables. Generating the knockout switches the TV to the bracket automatically.
+4. Keep the main window on the laptop. In **Matches**, tap a match, type both scores, and press **Enter**. The TV updates instantly.
    - **Walkover (not played):** choose *Walkover* and the winner. It is recorded 0–0; the winner gets the win and points, and point difference is unchanged.
    - **Retired mid-game (injury):** choose *Retired*, enter the score at that moment (e.g. 10–8) and the winner. The score counts toward point difference.
    - Wrong score? Tap the match again to edit or clear it.
-4. **Every few matches:** go to **Backup & Settings → Download backup**.
-5. When the league is finished:
+5. **Every few matches:** go to **Backup & Settings → Download backup**.
+6. When the league is finished:
    - Check **Standings** for ⚠ ties. If two teams are level on everything, decide (e.g. coin toss) and press **↑** on the winner.
    - Go to **Knockout → Generate knockout bracket**, then tap each knockout match to enter its score. Winners move on automatically.
-6. At the end: **Backup & Settings → Results to Excel** gives the organizers a full report.
+7. At the end: **Backup & Settings → Results to Excel** gives the organizers a full report.
 
 ## 4. Rules used
 
@@ -68,9 +70,10 @@ Anyone with the link can use it, with no login and without you being there. Only
 | Table ranking | Points → Point difference → Points scored → Head-to-head (if they played) → Organizer's order |
 | Best next-placed teams across tables | Points → Point difference → Points scored |
 | Knockout seeds (table-based selection) | Table winners first, then 2nd places, etc.; same place ranked by points → PD → points scored |
-| First knockout round | Teams from the same table never meet (opponents are swapped automatically) |
+| First knockout round | If teams from the same table would meet, the preview lists the clashes and proposed swaps; the organizer chooses *swap* or *keep strict pairing* and confirms before generating. Swapped teams show ⇄ |
+| Bracket layout | Mirror image: top half from the left, bottom half from the right, Final in the middle. Each team shows its seed, e.g. (1), or its table place, e.g. A+B #1, for cross-group pairing |
 
-Scoring numbers, deuce, third-place match and the TV mode (auto-rotate / standings / bracket) can all be changed in **Backup & Settings**.
+Scoring numbers, deuce and the third-place match can all be changed in **Backup & Settings**.
 
 ## 5. Important
 
