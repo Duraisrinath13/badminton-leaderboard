@@ -107,8 +107,8 @@ body.tv{background:#0c1622;color:#eef3f8;overflow:hidden;font-size:1.25vw}
 .tv-head .clock{font-size:2vw;font-variant-numeric:tabular-nums;color:#f5c542}
 .tv-body{flex:1;min-height:0;display:grid;gap:1vw;overflow:hidden}
 .tv-table{background:#13212f;border-radius:.8vw;padding:.7vw .9vw;display:flex;flex-direction:column;min-height:0}
-.tv-table h2{margin:0 0 .3vw;font-size:1.4vw;color:#f5c542}
-.tv-table{overflow:hidden}.tv-table table{font-size:min(1.05vw,1.85vh)}
+.tv-table h2{margin:0 0 .3vw;font-size:calc(1.4vw * var(--k,1));color:#f5c542}
+.tv-table{overflow:hidden}.tv-table table{font-size:calc(min(1.05vw,1.85vh) * var(--k,1))}
 .tv-table th{color:#7f93a8;font-size:min(.8vw,1.4vh);border-color:#22374b;padding:.15vw .4vw}
 .tv-table td{border-color:#1d3042;padding:min(.2vw,.35vh) .4vw}
 .tv-table tr.q td{background:rgba(245,197,66,.18);color:#fff}
@@ -121,7 +121,7 @@ body.tv{background:#0c1622;color:#eef3f8;overflow:hidden;font-size:1.25vw}
 .tv-bracket .round{min-width:0;flex:1}.tv-bracket .rb{gap:min(.3vw,.5vh)}
 .tv-bracket .round h4{color:#7f93a8;font-size:.9vw}
 .tv-bracket .bm{background:#13212f;border-color:#22374b;cursor:default}
-.tv-bracket .bm .s{font-size:var(--bfs,1vw);line-height:1.3;padding:min(.15vw,.25vh) .5vw;color:#dfe8f0;white-space:nowrap;overflow:hidden}
+.tv-bracket .bm .s{font-size:calc(var(--bfs,1vw) * var(--k,1));line-height:1.3;padding:min(.15vw,.25vh) .5vw;color:#dfe8f0;white-space:nowrap;overflow:hidden}
 .tv-bracket .bm .s+.s{border-color:#22374b}
 .tv-bracket .bm .s.w{background:rgba(245,197,66,.2);color:#fff}
 .tv-bracket .bm .s .sd{color:#f5c542;font-size:inherit}.tv-bracket .bm .s .nm{white-space:normal;line-height:1.15}.tv-bracket .bm .s{align-items:center;gap:.4vw}.tv-bracket .bm.final{border-color:#f5c542}
@@ -153,6 +153,9 @@ header.top h1 .htype{font-size:12px;font-weight:600;background:rgba(255,255,255,
 .tv-info{font-size:1vw;color:#9fb3c8;margin-top:.2vw}
 .tv-right{text-align:right}
 .tv-right .sub{margin-top:.2vw}
+
+.tv-foot .ver{margin-left:auto;font-size:.7vw;color:#4d6175;padding-left:1vw}
+.ver-a{opacity:.6!important}
 </style>
 </head>
 <body>
@@ -617,6 +620,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   'use strict';
   const E = window.BDL;
   const KEY = 'bdl.state.v1';
+  const VERSION = 'v7 · 6 Nov 2026';
   const IS_TV = /(^|[#&])tv\b/.test(location.hash);
   const $ = s => document.querySelector(s);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -719,8 +723,19 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
         <div class="tv-head"><div class="tv-title">${S.club ? `<div class="tv-club">${esc(S.club)}</div>` : ''}<h1>🏸 ${esc(S.name)}${S.type ? ` <span class="tv-type">${esc(S.type)}</span>` : ''}</h1>${S.venue || S.date ? `<div class="tv-info">${esc([S.venue, fmtDate(S.date)].filter(Boolean).join(' · '))}</div>` : ''}</div>
         <div class="tv-right"><div class="clock" id="clock"></div><div class="sub">${sub} · ${played}/${S.matches.length} league matches</div></div></div>
         <div class="tv-body" id="tvb">${body}</div>
-        <div class="tv-foot">${recent ? 'Latest: ' + recent : ''}</div></div>`;
+        <div class="tv-foot">${recent ? 'Latest: ' + recent : ''}<span class="ver">${VERSION}</span></div></div>`;
+      setTimeout(fitTV, 0);
     }
+    // Shrink everything inside the TV body until nothing is cut off (works on any screen / window size)
+    function fitTV() {
+      const b = $('#tvb'); if (!b) return;
+      const over = () => { const bb = b.getBoundingClientRect().bottom + 1, rr = b.getBoundingClientRect().right + 1;
+        return [...b.querySelectorAll('.bm, tr, .tv-champ')].some(e => { const r = e.getBoundingClientRect(); return r.bottom > bb || r.right > rr; }) ||
+          [...b.querySelectorAll('.tv-table')].some(t => t.scrollHeight > t.clientHeight + 1); };
+      let k = 1; b.style.setProperty('--k', k);
+      for (let i = 0; i < 30 && over(); i++) { k *= 0.95; b.style.setProperty('--k', k.toFixed(3)); }
+    }
+    let rsz; window.addEventListener('resize', () => { clearTimeout(rsz); rsz = setTimeout(() => tick(true), 150); });
     function tvQualified() {
       const qd = qualifiedData();
       if (!qd) return '<div class="tv-empty">Qualification not set yet</div>';
@@ -729,7 +744,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       setTimeout(() => { const b = $('#tvb'); if (b) { b.style.gridTemplateColumns = `repeat(${cols.length},1fr)`; b.style.gridTemplateRows = (qd.provisional ? 'auto ' : '') + '1fr'; } });
       const fs = L.length > 24 ? 'min(2.5vh,1.2vw)' : 'min(3vh,1.5vw)';
       return (qd.provisional ? `<div class="tv-prov" style="grid-column:1/-1">Provisional – ${qd.pending} league match${qd.pending > 1 ? 'es' : ''} still to play</div>` : '') +
-        cols.map(c => `<div class="tv-table"><table style="font-size:${fs}"><thead><tr><th>Seed</th><th>Team</th><th>From</th><th class="num">W</th><th class="num">PD</th><th class="num">Pts</th></tr></thead><tbody>${
+        cols.map(c => `<div class="tv-table"><table style="font-size:calc(${fs} * var(--k,1))"><thead><tr><th>Seed</th><th>Team</th><th>From</th><th class="num">W</th><th class="num">PD</th><th class="num">Pts</th></tr></thead><tbody>${
           c.map(r => `<tr class="q"><td><b>${r.seed}</b></td><td class="tn">${esc(tname(r.id))}${qd.provisional ? '' : ' <span class="qmark">(Q)</span>'}</td><td>${esc(tn[r.tableId] || '')} #${r.pos}</td><td class="num">${r.W}</td><td class="num">${r.PD > 0 ? '+' : ''}${r.PD}</td><td class="num"><b>${r.Pts}</b></td></tr>`).join('')
         }</tbody></table></div>`).join('');
     }
@@ -768,7 +783,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   function render() {
     const tabs = [['details', 'Tournament'], ['setup', 'Setup'], ['matches', 'Matches'], ['standings', 'Standings'], ['knockout', 'Knockout'], ['backup', 'Backup & Settings'], ['help', 'Help']];
     $('#app').innerHTML = `
-      <header class="top"><h1>${S.club ? `<span class="hclub">${esc(S.club)}</span>` : ''}🏸 ${esc(S.name)}${S.type ? ` <span class="htype">${esc(S.type)}</span>` : ''}</h1><span class="saved" id="saved">${storageOk ? '' : '⚠ Not saved'}</span>
+      <header class="top"><h1>${S.club ? `<span class="hclub">${esc(S.club)}</span>` : ''}🏸 ${esc(S.name)}${S.type ? ` <span class="htype">${esc(S.type)}</span>` : ''}</h1><span class="saved ver-a">${VERSION}</span><span class="saved" id="saved">${storageOk ? '' : '⚠ Not saved'}</span>
         <div class="seg tvseg" title="What the TV shows">${[['league', 'League'], ['qualified', 'Qualified'], ['knockout', 'Knockout']].map(([k, l]) => `<button class="${(S.tvView || 'league') === k ? 'on' : ''}" data-act="tvview" data-v="${k}" ${k === 'knockout' && !S.ko ? 'disabled' : ''}>${l}</button>`).join('')}</div>
         <button data-act="tv">📺 Open TV display</button></header>
       <nav class="tabs">${tabs.map(([k, l]) => `<button class="${tab === k ? 'on' : ''}" data-tab="${k}">${l}</button>`).join('')}</nav>
