@@ -781,6 +781,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       ${S.ko ? '<div class="note warn small">Knockout already drawn – changing league results now will not change the draw (reset the knockout to redraw).</div>' : ''}
       <div class="row" style="margin-bottom:10px"><div class="seg" style="margin:0">${[['pending', 'To play'], ['done', 'Played'], ['all', 'All']].map(([k, l]) => `<button class="${mFilter === k ? 'on' : ''}" data-act="mf" data-v="${k}">${l}</button>`).join('')}</div>
       <input type="search" id="msearch" placeholder="Search team, match no, court…" value="${esc(mSearch)}" style="flex:1;min-width:180px"></div>
+      ${/^demo/i.test(S.name) && S.matches.some(m => !m.result) ? '<p><button class="small" data-act="fill-league">🎲 Demo: fill remaining matches with random scores</button></p>' : ''}
       <div class="mlist">${list.map(m => matchRow(m, tOf)).join('') || '<p class="mute">No matches here.</p>'}</div></div>`;
   }
   function matchRow(m, tOf) {
@@ -906,7 +907,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
   }
   function bm(m, clickable, showSeed) {
     const r = m.result;
-    const side = k => `<div class="s ${r && r.winner === k ? 'w' : ''}"><span>${showSeed && m['seed' + k] ? `<span class="sd">${m['seed' + k]}</span>` : ''}${esc(tname(m['t' + k]))}</span><span>${r ? (r.type === 'wo' ? (r.winner === k ? 'W/O' : '') : r['s' + k]) : ''}</span></div>`;
+    const side = k => `<div class="s ${r && r.winner === k ? 'w' : ''}"><span>${showSeed && m['seed' + k] ? `<span class="sd">${m['seed' + k]}</span>` : ''}${esc(tname(m['t' + k]))}</span><span>${r ? (r.type === 'wo' ? (r.winner === k ? 'W/O' : '') : r['s' + k] + (r.type === 'ret' && r.winner !== k ? ' <small>ret</small>' : '')) : ''}</span></div>`;
     const can = clickable && m.t1 && m.t2;
     return `<div class="bm ${can ? '' : 'empty'}" ${can ? `data-act="edit" data-id="${m.id}"` : ''}>${side(1)}${side(2)}</div>`;
   }
@@ -917,7 +918,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       <div class="row"><label class="small"><input type="checkbox" data-act="set-bool" data-f="koDeuce" ${S.settings.koDeuce ? 'checked' : ''}> Deuce (cap ${S.settings.koCap})</label>
       <label class="small"><input type="checkbox" data-act="set-bool" data-f="thirdPlace" ${S.settings.thirdPlace ? 'checked' : ''}> Third-place match</label>
       <button class="danger small" data-act="ko-reset">Reset knockout</button></div></div>
-      <p class="small mute">Tap a match to enter the score. Winners move to the next round automatically.</p>
+      <p class="small mute">Tap a match to enter the score. Winners move to the next round automatically.${/^demo/i.test(S.name) && koOpen().length ? ' <button class="small" data-act="fill-ko">🎲 Demo: fill next round</button>' : ''}</p>
       <div class="bracket">${bracketCols(S.ko, true)}</div></div>`;
   }
 
@@ -937,6 +938,10 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       </div><div class="row" style="margin-top:10px"><label><input type="checkbox" data-act="set-bool" data-f="leagueDeuce" ${s.leagueDeuce ? 'checked' : ''}> Deuce in league games</label>
       <label><input type="checkbox" data-act="set-bool" data-f="koDeuce" ${s.koDeuce ? 'checked' : ''}> Deuce in knockout games</label>
       <label><input type="checkbox" data-act="set-bool" data-f="thirdPlace" ${s.thirdPlace ? 'checked' : ''}> Third-place match</label></div></div>
+      <div class="card"><h2>Testing tools</h2><p class="small mute">For practice runs only – fills matches with random scores so you can check standings, qualification and the bracket. Don't use on the real day.</p>
+      <div class="row"><button data-act="fill-league" ${S.matches.some(m => !m.result) ? '' : 'disabled'}>🎲 Fill remaining league matches</button>
+      <button data-act="fill-ko" ${S.ko && koOpen().length ? '' : 'disabled'}>🎲 Fill next knockout round</button>
+      <label class="small"><input type="checkbox" id="fillspecial" checked> include a few walkovers / retirements</label></div></div>
       <div class="card"><h2>Danger zone</h2><button class="danger" data-act="wipe">Delete everything and start fresh</button></div>`;
   }
   function vHelp() {
@@ -997,6 +1002,32 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
     startTournament(b);
   }
 
+  /* ---------- testing: random scores ---------- */
+  function koOpen() { const all = S.ko ? S.ko.rounds.flat().concat(S.ko.third ? [S.ko.third] : []) : []; return all.filter(m => m.t1 && m.t2 && !m.result); }
+  function randomResult(rules, special) {
+    const R = n => Math.floor(Math.random() * n), win = 1 + R(2), T = rules.target;
+    const x = Math.random();
+    if (special && x < 0.04) return { type: 'wo', s1: 0, s2: 0, winner: win, at: Date.now() };
+    if (special && x < 0.08) { const a = R(T - 1), b = R(T - 1); return { type: 'ret', s1: a, s2: b, winner: win, at: Date.now() }; }
+    let w = T, l = R(T - 1);
+    if (rules.deuce && Math.random() < 0.25) { w = T + 1 + R(rules.cap - T); if (w >= rules.cap) { w = rules.cap; l = rules.cap - 1 - R(2); } else l = w - 2; }
+    else if (!rules.deuce && Math.random() < 0.15) l = T - 1;
+    return { type: 'normal', s1: win === 1 ? w : l, s2: win === 1 ? l : w, winner: win, at: Date.now() };
+  }
+  function fillLeague() {
+    const left = S.matches.filter(m => !m.result); if (!left.length) return;
+    if (!confirm(`Fill ${left.length} unplayed league matches with random scores? (testing only)`)) return;
+    const sp = $('#fillspecial') ? $('#fillspecial').checked : true, rules = E.leagueRules(S.settings);
+    left.forEach((m, i) => { m.result = randomResult(rules, sp); m.result.at = Date.now() + i; });
+    save(); render();
+  }
+  function fillKo() {
+    const open = koOpen(); if (!open.length) return;
+    const sp = $('#fillspecial') ? $('#fillspecial').checked : true, rules = E.koRules(S.settings);
+    open.forEach((m, i) => { m.result = randomResult(rules, sp); m.result.at = Date.now() + i; });
+    E.koResolve(S.ko, S.settings.thirdPlace); save(); render();
+  }
+
   /* ---------- events ---------- */
   document.addEventListener('click', e => {
     const tb = e.target.closest('[data-tab]'); if (tb) { e.preventDefault(); tab = tb.dataset.tab; render(); window.scrollTo(0, 0); return; }
@@ -1042,6 +1073,8 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
       case 'export-json': download(fileBase() + '_backup_' + stamp() + '.json', new Blob([JSON.stringify(S)], { type: 'application/json' })); break;
       case 'pick-json': $('#jfile').click(); break;
       case 'export-xlsx': exportXlsx(); break;
+      case 'fill-league': fillLeague(); break;
+      case 'fill-ko': fillKo(); break;
       case 'wipe': if (confirm('Delete ALL data in this browser? (Download a backup first!)') && confirm('Really delete everything?')) { S = blank(); save(); tab = 'setup'; render(); } break;
     }
   });
